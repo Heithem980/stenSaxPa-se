@@ -8,18 +8,27 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		System.out.print("Välj motståndare (1)datorn  (2)spelare : ");
+		String val = input.nextLine();
 		
-		spel();
+		if(val.equals("datorn") || val.equals("1")) {
+			datorn();
+		}
+		else {spelare();}
+		
+		System.out.print("Avslutar...");
 	}
 	
 	
 	
-	public static void spel() {
+	
+	
+	public static void spelare() {
 		
 	  String fortsätt;
 	 do {
 		
-        System.out.println("sten sax påse! ");
+        System.out.println("sten sax påse! Välj mellan: sten , sax , påse ");
 		
 		System.out.print("spelare 1: ");
 		String spelare1 = input.nextLine();
@@ -31,7 +40,7 @@ public class Main {
 		
 		// Om det är oavgjort.
 		if(spelare1.equals(spelare2)) {
-			System.out.print("Det är oavgjort!");
+			System.out.println("Det är oavgjort!");
 		}
 		
 		
@@ -74,6 +83,74 @@ public class Main {
 		
 	  }while(fortsätt.equals("JA"));
 		
+	}
+	
+	public static void datorn () {
+		
+		String fortsätt;
+		 do {
+			 // slumpa tal mellan 1-3 och tilldela "datornsVal".
+			int datornsVal = (int)(Math.random() * 3) + 1; 
+			
+			
+			
+	        System.out.println("sten sax påse! Välj nummer: (1)sten , (2)sax , (3)påse . ");
+			
+			System.out.print("spelare 1: ");
+			int spelare1 = input.nextInt();
+			
+			
+			
+			
+			
+			// Om det är oavgjort.
+			if(spelare1 == datornsVal) {
+				System.out.println("Det är oavgjort!  Datorns val: " + datornsVal);
+			}
+			
+			
+			// Om spelarnas val skiljer sig
+			else if( datornsVal != spelare1) {
+				
+				
+				// sten krossar sax
+				if(spelare1 == 1 && datornsVal == 2) {
+					System.out.println("Du vinner! Datorns val: " + datornsVal);
+				}
+				else if(datornsVal == 1 && spelare1 == 2) {
+					System.out.println("Datorn vinner!Datorns val: " + datornsVal);
+				}
+				
+				
+				// sax klipper påse
+				
+				if(spelare1 == 2 && datornsVal == 3) {
+					System.out.println("Du vinner! Datorns val: " + datornsVal);
+				}
+				else if(datornsVal == 2 && spelare1 == 3) {
+					System.out.println("Datorn vinner! Datorns val: " + datornsVal);
+				}
+				
+				// påse fångar sten
+				
+				if(spelare1 == 3 && datornsVal == 1) {
+					System.out.println("spelare 1 vinner! Datorns val: " + datornsVal);
+				}
+				else if(datornsVal == 3 && spelare1 == 1) {
+					System.out.println("Datorn vinner! Datorns val: " + datornsVal);
+				}
+			}
+			
+			// Detta behövs eftersom Scanner hoppar över (fortsätt = input.nextLine()) annars. Skulle gissa på att det är en bug.
+			String fixIssue  = input.nextLine();
+			
+			
+			System.out.print("Vill du spela igen? (JA/NEJ)");
+			fortsätt = input.nextLine();
+			
+			
+		  }while(fortsätt.equals("JA"));
+			
 	}
 
 }
